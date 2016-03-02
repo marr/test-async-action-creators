@@ -1,6 +1,7 @@
+import expect from 'expect'
 import nock from 'nock'
 import configureMockStore from 'redux-mock-store'
-import { loadUser } from './actions'
+import { loadUser, loadedUser } from './actions'
 import sinon from 'sinon'
 import thunk from 'redux-thunk'
 
@@ -12,16 +13,25 @@ nock('http://localhost')
 
 const mockStore = configureMockStore([thunk])
 
+describe('sync actions', () => {
+    it('updates state', () => {
+        const expectedActions = [
+            { type: 'LOADED_USER', payload: { id: 1 }}
+        ]
+        const store = mockStore({})
+        store.dispatch(loadedUser({ id: 1 }))
+        expect(store.getActions()).toEqual(expectedActions)
+    })
+})
+
 describe('async actions', () => {
     it('updates state', done => {
         const expectedActions = [
             { type: 'LOADED_USER', payload: { id: 1 }}
         ]
         const store = mockStore({})
-       
-        // never gets inside the then here
         store.dispatch(loadUser(1)).then(() => {
             expect(store.getActions()).toEqual(expectedActions)
-        })
+        }).then(done)
     })
 })

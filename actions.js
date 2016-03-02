@@ -9,7 +9,7 @@ const checkResponse = res => {
 
 const parseJSON = res => res.json()
 
-const loadedUser = user => {
+export const loadedUser = user => {
     return { type: 'LOADED_USER', payload: user }
 }
 
