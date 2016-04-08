@@ -1,6 +1,6 @@
 import expect from 'expect'
-import reducer from './reducer'
-import * as types from './constants'
+import reducer from '../src/reducer'
+import * as types from '../src/constants'
 
 describe('users reducer', () => {
   it('should return the initial state', () => {

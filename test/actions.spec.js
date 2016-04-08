@@ -1,8 +1,8 @@
 import expect from 'expect'
 import nock from 'nock'
 import configureMockStore from 'redux-mock-store'
-import { loadUser, loadedUser } from './actions'
-import { LOADED_USER } from './constants'
+import { loadUser, loadedUser } from '../src/actions'
+import { LOADED_USER } from '../src/constants'
 import sinon from 'sinon'
 import thunk from 'redux-thunk'
 
